@@ -2,8 +2,8 @@ var Command = {};
 var settings, sessions;
 
 Command.descriptions = [
-  ['open',         'Open a link in the current tab'],
-  ['tabnew',       'Open a link in a new tab'],
+  ['o',         'Open a link in the current tab'],
+  ['t',       'Open a link in a new tab'],
   ['tabnext',      'Switch to the next open tab'],
   ['tabprevious',  'Switch to the previous open tab'],
   ['new',          'Open a link in a new window'],
@@ -386,10 +386,10 @@ Command.callCompletionFunction = (function() {
     search = value.replace(/^(chrome:\/\/|\S+ +)/, '');
     var baseCommand = (value.match(/^\S+/) || [null])[0];
     switch (baseCommand) {
-    case 'tabnew':
+    case 't':
     case 'tabedit':
     case 'tabopen':
-    case 'open':
+    case 'o':
     case 'new':
       searchCompletion(value);
       return true;
@@ -742,7 +742,7 @@ Command.execute = function(value, repeats) {
     });
   }
 
-  if (/^(tabnew|tabedit|tabe|to|tabopen|tabhistory)$/
+  if (/^(t|tabedit|tabe|to|tabopen|tabhistory)$/
       .test(value.replace(/ .*/, ''))) {
     tab.tabbed = true;
     RUNTIME('openLink', {
